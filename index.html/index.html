@@ -11,9 +11,10 @@
         body {
             color: #fff;
             overflow-x: hidden;
-            min-height: 100vh;
+            height: 100vh;
             background-color: #000;
-            padding-bottom: 120px; /* Espaço para não cobrir o texto final */
+            display: flex;
+            flex-direction: column;
         }
 
         /* Vídeo de Fundo */
@@ -37,89 +38,85 @@
             z-index: -1;
         }
 
-        header { text-align: center; padding: 50px 20px 20px 20px; position: relative; }
-        header h1 { font-size: 3rem; color: #ff3366; margin-bottom: 20px; text-shadow: 2px 2px 15px rgba(0,0,0,0.7); }
+        header { text-align: center; padding: 40px 20px 10px; position: relative; }
+        header h1 { font-size: 2.8rem; color: #ff3366; margin-bottom: 15px; text-shadow: 2px 2px 15px rgba(0,0,0,0.7); }
+        header p { font-size: 1.1rem; color: #eee; max-width: 600px; margin: auto; line-height: 1.5; }
 
-        header p {
-            font-size: 1.2rem;
-            color: #eee;
-            max-width: 700px;
-            margin: auto;
-            line-height: 1.6;
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+        /* CONTADOR CENTRALIZADO NO MEIO DA TELA */
+        .center-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         #counter {
             text-align: center;
-            margin: 30px auto;
             font-size: 2rem;
             color: #ff3366;
             font-weight: bold;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(8px);
-            width: fit-content;
-            padding: 20px 40px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(10px);
+            padding: 20px 35px;
             border-radius: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
         }
-        #counter span { display: block; font-size: 1rem; color: #ccc; font-weight: normal; margin-top: 5px; }
+        #counter span { display: block; font-size: 0.9rem; color: #ccc; font-weight: normal; margin-top: 5px; }
 
-        #final-message {
-            text-align: center;
-            margin: 20px 20px 40px 20px;
-            font-size: 1.3rem;
-            color: #fff;
-            line-height: 1.6;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.9);
-        }
-
-        /* POSICIONAMENTO FIXO COM VISUAL TRANSPARENTE ORIGINAL */
-        .footer-controls {
+        /* TEXTO DIMINUÍDO E BOTÃO NO RODAPÉ */
+        .footer-area {
             position: fixed;
-            bottom: 35px;
+            bottom: 0;
             left: 0;
             width: 100%;
-            display: flex;
-            justify-content: center;
+            padding-bottom: 40px;
+            text-align: center;
             z-index: 100;
         }
 
+        #final-message {
+            margin-bottom: 15px;
+            padding: 0 25px;
+            font-size: 1rem; /* Diminuído conforme solicitado */
+            color: #fff;
+            line-height: 1.4;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
+            font-weight: 500;
+        }
+
         #loveButton, #galleryButton {
-            padding: 18px 45px;
-            font-size: 1.5rem;
-            background: transparent; /* Voltamos ao transparente */
+            display: inline-block;
+            padding: 15px 40px;
+            font-size: 1.3rem;
+            background: transparent;
             color: #ff3366;
-            border: 2px solid #ff3366; /* Borda original */
+            border: 2px solid #ff3366;
             border-radius: 50px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             font-weight: bold;
             text-transform: uppercase;
-            width: fit-content;
-            text-align: center;
-            backdrop-filter: blur(3px); /* Leve desfoque atrás para ler melhor sobre o vídeo */
+            backdrop-filter: blur(4px);
         }
 
         #loveButton:hover, #galleryButton:hover {
-            background: rgba(255, 51, 102, 0.2);
+            background: rgba(255, 51, 102, 0.15);
             transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(255, 51, 102, 0.3);
         }
 
         #galleryButton { display: none; }
 
         /* Ajustes Mobile */
-        @media (max-width: 600px) {
-            header { padding: 40px 15px 10px 15px; }
-            header h1 { font-size: 2.5rem; }
-            header p { font-size: 1.1rem; }
-            #counter { font-size: 1.8rem; padding: 15px 30px; }
-            #final-message { font-size: 1.2rem; }
+        @media (max-width: 480px) {
+            header h1 { font-size: 2.2rem; }
+            header p { font-size: 0.95rem; }
+            #counter { font-size: 1.7rem; padding: 15px 25px; }
+            #final-message { font-size: 0.9rem; width: 90%; margin-left: auto; margin-right: auto; }
             #loveButton, #galleryButton {
-                font-size: 1.3rem;
-                padding: 15px 35px;
-                width: 90%;
-                max-width: 300px;
+                font-size: 1.1rem;
+                padding: 12px 30px;
+                width: 85%;
             }
         }
 
@@ -148,16 +145,18 @@
     </p>
 </header>
 
-<div id="counter">
-    <div id="daysCount">0 dias</div>
-    <span>Juntos desde 28 de Junho de 2025</span>
+<div class="center-content">
+    <div id="counter">
+        <div id="daysCount">0 dias</div>
+        <span>Juntos desde 28 de Junho de 2025</span>
+    </div>
 </div>
 
-<div id="final-message">
-    <strong>Esse não é apenas o nosso primeiro ano, é o começo de uma vida inteira de momentos só nossos! 💞</strong>
-</div>
+<div class="footer-area">
+    <div id="final-message">
+        <strong>Esse não é apenas o nosso primeiro ano, é o começo de uma vida inteira de momentos só nossos! 💞</strong>
+    </div>
 
-<div class="footer-controls">
     <button id="loveButton">EU TE AMO! 💞</button>
     <button id="galleryButton">Galeria 💞</button>
 </div>
@@ -224,7 +223,7 @@
 
     loveButton.addEventListener('click', () => {
         bgMusic.play().catch(e => console.log("Som ativado"));
-        galleryButton.style.display = 'block';
+        galleryButton.style.display = 'inline-block';
         loveButton.style.display = 'none';
     });
 
