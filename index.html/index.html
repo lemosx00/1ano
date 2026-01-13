@@ -10,7 +10,7 @@
 
         body { color: #fff; overflow-x: hidden; min-height: 100vh; background-color: #000; }
 
-        /* Vídeo de Fundo ajustado */
+        /* Vídeo de Fundo do Cloudinary */
         #video-bg {
             position: fixed;
             top: 0;
@@ -96,7 +96,7 @@
 <body>
 
 <video autoplay muted loop playsinline id="video-bg">
-    <source src="fundo.mp4" type="video/mp4">
+    <source src="https://res.cloudinary.com/dpuisbhwa/video/upload/v1768279380/fundo_1_okbuhm.mp4" type="video/mp4">
 </video>
 <div class="video-overlay"></div>
 
@@ -144,12 +144,14 @@
 
     const galleryItems = [];
 
+    // Carregando fotos
     for(let i = 5; i <= 113; i++){
         galleryItems.push({ type: 'image', src: `fotos/foto (${i}).jpg` });
     }
 
+    // Carregando vídeos da galeria
     for(let i = 1; i <= 11; i++){
-        galleryItems.push({ type: 'video', src: `videos/foto (${i}).MP4` });
+        galleryItems.push({ type: 'video', src: `videos/foto (${i}).mp4` });
     }
 
     galleryItems.forEach(item => {
@@ -159,8 +161,7 @@
             element.src = item.src;
             element.loading = "lazy";
             
-            // TRUQUE PARA O .JPG MAIÚSCULO:
-            // Se falhar ao carregar .jpg, ele tenta .JPG automaticamente
+            // Tratamento para extensões .JPG maiúsculas
             element.onerror = function() {
                 if (this.src.endsWith('.jpg')) {
                     this.src = this.src.replace('.jpg', '.JPG');
@@ -190,7 +191,7 @@
     }
 
     loveButton.addEventListener('click', () => {
-        bgMusic.play().catch(e => console.log("Som ativado"));
+        bgMusic.play().catch(e => console.log("Som ativado pelo clique"));
         galleryButton.style.display = 'block';
         loveButton.style.display = 'none';
     });
@@ -202,4 +203,3 @@
 
 </body>
 </html>
-
