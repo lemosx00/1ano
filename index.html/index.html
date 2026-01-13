@@ -60,7 +60,6 @@
             text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
         }
 
-        /* Correção dos Botões: width fit-content centralizado */
         #loveButton, #galleryButton {
             display: block;
             margin: 40px auto;
@@ -75,7 +74,7 @@
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 1px;
-            width: fit-content; /* Faz o botão ter o tamanho do texto */
+            width: fit-content;
         }
         #loveButton:hover, #galleryButton:hover {
             background: rgba(255, 51, 102, 0.2);
@@ -159,6 +158,14 @@
             element = document.createElement('img');
             element.src = item.src;
             element.loading = "lazy";
+            
+            // TRUQUE PARA O .JPG MAIÚSCULO:
+            // Se falhar ao carregar .jpg, ele tenta .JPG automaticamente
+            element.onerror = function() {
+                if (this.src.endsWith('.jpg')) {
+                    this.src = this.src.replace('.jpg', '.JPG');
+                }
+            };
         } else {
             element = document.createElement('video');
             element.src = item.src;
