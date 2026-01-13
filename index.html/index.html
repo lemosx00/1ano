@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Bulachinha</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+
+        body { color: #fff; overflow-x: hidden; min-height: 100vh; background-color: #000; }
+
+        /* Vídeo de Fundo ajustado */
+        #video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            z-index: -1;
+        }
+
+        header { text-align: center; padding: 50px 20px; position: relative; }
+        header h1 { font-size: 3rem; color: #ff3366; margin-bottom: 20px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        header p { font-size: 1.2rem; color: #eee; max-width: 600px; margin: auto; font-weight: 400; }
+
+        #counter {
+            text-align: center;
+            margin: 20px auto;
+            font-size: 1.8rem;
+            color: #ff3366;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            width: fit-content;
+            padding: 15px 30px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        #counter span { display: block; font-size: 0.9rem; color: #ccc; font-weight: normal; margin-top: 5px; }
+
+        #message {
+            text-align: center;
+            margin: 40px 20px;
+            font-size: 1.5rem;
+            color: #fff;
+            line-height: 1.6;
+            font-weight: 400;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+        }
+
+        /* Correção dos Botões: width fit-content centralizado */
+        #loveButton, #galleryButton {
+            display: block;
+            margin: 40px auto;
+            padding: 15px 40px;
+            font-size: 1.6rem;
+            background: transparent;
+            color: #ff3366;
+            border: 2px solid #ff3366;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: fit-content; /* Faz o botão ter o tamanho do texto */
+        }
+        #loveButton:hover, #galleryButton:hover {
+            background: rgba(255, 51, 102, 0.2);
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 51, 102, 0.4);
+        }
+
+        #galleryButton { display: none; }
+
+        #overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: flex-start; flex-wrap: wrap; overflow-y: auto; padding: 60px 20px; z-index: 1000; }
+        #overlay .close { position: absolute; top: 20px; right: 30px; font-size: 3rem; color: white; cursor: pointer; z-index: 1001; }
+        #overlay .item { margin: 10px; max-width: 300px; border-radius: 15px; border: 2px solid rgba(255,255,255,0.3); transition: 0.3s; }
+        #overlay .item:hover { border-color: #ff3366; transform: scale(1.02); }
+        #overlay img, #overlay video { width: 100%; height: auto; border-radius: 13px; display: block; }
+
+        audio { display: none; }
+    </style>
+</head>
+<body>
+
+<video autoplay muted loop playsinline id="video-bg">
+    <source src="fundo.mp4" type="video/mp4">
+</video>
+<div class="video-overlay"></div>
+
+<audio id="bgMusic" src="musica/fall in love with you.mp3" loop></audio>
+
+<header>
+    <h1>Minha Bulachinha</h1>
+    <p>Um presente cheio de memórias, fotos e vídeos, tudo com amor e carinho. 💞</p>
+</header>
+
+<div id="counter">
+    <div id="daysCount">0 dias</div>
+    <span>Desde 28 de Junho de 2025</span>
+</div>
+
+<div id="message">
+    Você é minha inspiração, minha estação preferida, minha música favorita. <br>
+    Cada momento com você é único e inesquecível. <br>
+    <strong>Esse não é apenas o nosso primeiro ano, é só o começo! 💞</strong>
+</div>
+
+<button id="loveButton">EU TE AMO! 💞</button>
+<div id="galleryButton">Galeria 💞</div>
+
+<div id="overlay">
+    <span class="close">&times;</span>
+</div>
+
+<script>
+    const loveButton = document.getElementById('loveButton');
+    const galleryButton = document.getElementById('galleryButton');
+    const overlay = document.getElementById('overlay');
+    const closeBtn = document.querySelector('#overlay .close');
+    const bgMusic = document.getElementById('bgMusic');
+
+    // Contador de dias
+    const startDate = new Date('2025-06-28T00:00:00');
+    function updateCounter() {
+        const now = new Date();
+        const diffTime = Math.abs(now - startDate);
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        document.getElementById('daysCount').innerText = `${diffDays} dias`;
+    }
+    updateCounter();
+
+    const galleryItems = [];
+
+    for(let i = 5; i <= 113; i++){
+        galleryItems.push({ type: 'image', src: `fotos/foto (${i}).jpg` });
+    }
+
+    for(let i = 1; i <= 11; i++){
+        galleryItems.push({ type: 'video', src: `videos/foto (${i}).mp4` });
+    }
+
+    galleryItems.forEach(item => {
+        let element;
+        if(item.type === 'image'){
+            element = document.createElement('img');
+            element.src = item.src;
+            element.loading = "lazy";
+        } else {
+            element = document.createElement('video');
+            element.src = item.src;
+            element.controls = true;
+            element.muted = true;
+            element.preload = 'metadata';
+        }
+        element.classList.add('item');
+        overlay.appendChild(element);
+    });
+
+    function openOverlay() {
+        overlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeOverlay() {
+        overlay.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        const videos = overlay.querySelectorAll('video');
+        videos.forEach(v => v.pause());
+    }
+
+    loveButton.addEventListener('click', () => {
+        bgMusic.play().catch(e => console.log("Som ativado"));
+        galleryButton.style.display = 'block';
+        loveButton.style.display = 'none';
+    });
+
+    galleryButton.addEventListener('click', openOverlay);
+    closeBtn.addEventListener('click', closeOverlay);
+    overlay.addEventListener('click', e => { if(e.target === overlay) closeOverlay(); });
+</script>
+
+</body>
+</html>
