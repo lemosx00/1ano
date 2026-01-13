@@ -33,11 +33,20 @@
 
         header { text-align: center; padding: 60px 20px; position: relative; }
         header h1 { font-size: 3rem; color: #ff3366; margin-bottom: 20px; text-shadow: 2px 2px 15px rgba(0,0,0,0.7); }
-        header p { font-size: 1.2rem; color: #eee; max-width: 600px; margin: auto; }
+        
+        /* Texto unificado com o tamanho do "um presente..." */
+        header p { 
+            font-size: 1.2rem; 
+            color: #eee; 
+            max-width: 700px; 
+            margin: auto; 
+            line-height: 1.6;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+        }
 
         #counter {
             text-align: center;
-            margin: 20px auto;
+            margin: 30px auto;
             font-size: 2rem;
             color: #ff3366;
             font-weight: bold;
@@ -50,18 +59,9 @@
         }
         #counter span { display: block; font-size: 1rem; color: #ccc; font-weight: normal; margin-top: 5px; }
 
-        #message {
-            text-align: center;
-            margin: 40px 20px;
-            font-size: 1.6rem;
-            color: #fff;
-            line-height: 1.6;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.9);
-        }
-
         #loveButton, #galleryButton {
             display: block;
-            margin: 40px auto;
+            margin: 40px auto !important;
             padding: 18px 45px;
             font-size: 1.5rem;
             background: transparent;
@@ -73,6 +73,7 @@
             font-weight: bold;
             text-transform: uppercase;
             width: fit-content;
+            text-align: center;
         }
 
         #loveButton:hover, #galleryButton:hover {
@@ -82,21 +83,16 @@
 
         #galleryButton { display: none; }
 
-        /* AJUSTES PARA CELULAR (Ficando maior e legível) */
+        /* Ajustes Mobile */
         @media (max-width: 600px) {
             header { padding: 40px 15px; }
             header h1 { font-size: 2.5rem; }
             header p { font-size: 1.1rem; }
-
             #counter { font-size: 1.8rem; padding: 15px 30px; }
-            #counter span { font-size: 0.9rem; }
-
-            #message { font-size: 1.3rem; margin: 30px 15px; }
-
-            #loveButton, #galleryButton {
-                font-size: 1.3rem;
-                padding: 15px 35px;
-                width: 90%;
+            #loveButton, #galleryButton { 
+                font-size: 1.3rem; 
+                padding: 15px 35px; 
+                width: 90%; 
                 max-width: 300px;
             }
         }
@@ -120,7 +116,12 @@
 
 <header>
     <h1>Minha Bulachinha</h1>
-    <p>Um presente cheio de memórias, fotos e vídeos. 💞</p>
+    <p>
+        Um presente cheio de memórias, fotos e vídeos, tudo com amor e carinho. 💞<br><br>
+        Você é minha inspiração, minha estação preferida, minha música favorita. <br>
+        Cada momento com você é único e inesquecível. <br>
+        <strong>Esse não é apenas o nosso primeiro ano, é só o começo! 💞</strong>
+    </p>
 </header>
 
 <div id="counter">
@@ -128,14 +129,8 @@
     <span>Juntos desde 28 de Junho de 2025</span>
 </div>
 
-<div id="message">
-    Você é minha inspiração, minha estação preferida, minha música favorita. <br>
-    Cada momento com você é único e inesquecível. <br>
-    <strong>Esse não é apenas o nosso primeiro ano, é só o começo! 💞</strong>
-</div>
-
 <button id="loveButton">EU TE AMO! 💞</button>
-<div id="galleryButton">Galeria 💞</div>
+<button id="galleryButton">Galeria 💞</button>
 
 <div id="overlay">
     <span class="close">&times;</span>
