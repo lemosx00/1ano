@@ -27,49 +27,43 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.65);
+            background: rgba(0, 0, 0, 0.6);
             z-index: -1;
         }
 
-        header { text-align: center; padding: 40px 20px; position: relative; }
-        
-        /* Título diminuído de 3rem para 2.2rem */
-        header h1 { font-size: 2.2rem; color: #ff3366; margin-bottom: 15px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
-        header p { font-size: 1rem; color: #eee; max-width: 500px; margin: auto; font-weight: 400; }
+        header { text-align: center; padding: 60px 20px; position: relative; }
+        header h1 { font-size: 3rem; color: #ff3366; margin-bottom: 20px; text-shadow: 2px 2px 15px rgba(0,0,0,0.7); }
+        header p { font-size: 1.2rem; color: #eee; max-width: 600px; margin: auto; }
 
-        /* Contador diminuído */
         #counter {
             text-align: center;
             margin: 20px auto;
-            font-size: 1.5rem;
+            font-size: 2rem;
             color: #ff3366;
             font-weight: bold;
             background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(8px);
             width: fit-content;
-            padding: 10px 25px;
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 20px 40px;
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
-        #counter span { display: block; font-size: 0.8rem; color: #ccc; font-weight: normal; margin-top: 5px; }
+        #counter span { display: block; font-size: 1rem; color: #ccc; font-weight: normal; margin-top: 5px; }
 
-        /* Mensagem diminuída de 1.5rem para 1.2rem */
         #message {
             text-align: center;
-            margin: 30px 20px;
-            font-size: 1.2rem;
+            margin: 40px 20px;
+            font-size: 1.6rem;
             color: #fff;
-            line-height: 1.5;
-            font-weight: 400;
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+            line-height: 1.6;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.9);
         }
 
-        /* Botões um pouco menores */
         #loveButton, #galleryButton {
             display: block;
-            margin: 30px auto;
-            padding: 12px 30px;
-            font-size: 1.3rem;
+            margin: 40px auto;
+            padding: 18px 45px;
+            font-size: 1.5rem;
             background: transparent;
             color: #ff3366;
             border: 2px solid #ff3366;
@@ -78,29 +72,38 @@
             transition: 0.3s;
             font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 1px;
             width: fit-content;
         }
+
         #loveButton:hover, #galleryButton:hover {
             background: rgba(255, 51, 102, 0.2);
             transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(255, 51, 102, 0.4);
         }
 
         #galleryButton { display: none; }
 
-        /* Ajustes específicos para Celulares Pequenos */
-        @media (max-width: 480px) {
-            header h1 { font-size: 1.8rem; }
-            #message { font-size: 1rem; }
-            #counter { font-size: 1.2rem; padding: 8px 20px; }
-            #loveButton, #galleryButton { font-size: 1.1rem; padding: 10px 25px; }
+        /* AJUSTES PARA CELULAR (Ficando maior e legível) */
+        @media (max-width: 600px) {
+            header { padding: 40px 15px; }
+            header h1 { font-size: 2.5rem; }
+            header p { font-size: 1.1rem; }
+
+            #counter { font-size: 1.8rem; padding: 15px 30px; }
+            #counter span { font-size: 0.9rem; }
+
+            #message { font-size: 1.3rem; margin: 30px 15px; }
+
+            #loveButton, #galleryButton {
+                font-size: 1.3rem;
+                padding: 15px 35px;
+                width: 90%;
+                max-width: 300px;
+            }
         }
 
         #overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: flex-start; flex-wrap: wrap; overflow-y: auto; padding: 60px 20px; z-index: 1000; }
         #overlay .close { position: absolute; top: 20px; right: 30px; font-size: 3rem; color: white; cursor: pointer; z-index: 1001; }
-        #overlay .item { margin: 10px; max-width: 300px; border-radius: 15px; border: 2px solid rgba(255,255,255,0.3); transition: 0.3s; }
-        #overlay .item:hover { border-color: #ff3366; transform: scale(1.02); }
+        #overlay .item { margin: 10px; max-width: 300px; border-radius: 15px; border: 2px solid rgba(255,255,255,0.3); }
         #overlay img, #overlay video { width: 100%; height: auto; border-radius: 13px; display: block; }
 
         audio { display: none; }
@@ -108,7 +111,7 @@
 </head>
 <body>
 
-<video autoplay muted loop playsinline webkit-playsinline id="video-bg">
+<video autoplay muted loop playsinline id="video-bg">
     <source src="https://res.cloudinary.com/dpuisbhwa/video/upload/fundo_1_okbuhm.mp4" type="video/mp4">
 </video>
 <div class="video-overlay"></div>
